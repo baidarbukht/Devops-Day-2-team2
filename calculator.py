@@ -21,7 +21,7 @@ def calculate_http(request):
     return f"The result of operation is: ${operation(a,b)}"
 
 def addition(a,b):
-    ...
+    return a+b
     
 def subtraction(a,b):
     ...
