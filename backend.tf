@@ -21,9 +21,9 @@ terraform {
 }
 
   resource "google_cloudfunctions_function" "function" {
-  name        = "function-test"
+  name        = "calculate_http"
   description = "calculator function"
-  runtime     = "nodejs14"
+  runtime     = "python39"
   
   available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.bucket.name
