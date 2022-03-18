@@ -19,6 +19,11 @@ terraform {
   name     = "nc-lp-devops-01-team-b-tfstate"
   location = "EU"
 }
+  resource "google_storage_bucket_object" "archive" {
+  name   = "index.zip"
+  bucket = google_storage_bucket.bucket.name
+  source = "./path/to/zip/file/which/contains/code"
+}
 
   resource "google_cloudfunctions_function" "function" {
   name        = "calculate_http"
@@ -30,5 +35,7 @@ terraform {
   source_archive_object = google_storage_bucket_object.archive.name
   trigger_http          = true
   entry_point           = "helloGET"
+}
+
 }
 
