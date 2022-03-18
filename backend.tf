@@ -14,8 +14,21 @@
 
 
 terraform {
-  backend "gcs" {
-    bucket = "nc-lp-devops-01-team-b-tfstate"
-    prefix = "env/dev"
-  }
+
+  resource "google_storage_bucket" "bucket" {
+  name     = "nc-lp-devops-01-team-b-tfstate"
+  location = "EU"
 }
+
+  resource "google_cloudfunctions_function" "function" {
+  name        = "function-test"
+  description = "calculator function"
+  runtime     = "nodejs14"
+  
+  available_memory_mb   = 128
+  source_archive_bucket = google_storage_bucket.bucket.name
+  source_archive_object = google_storage_bucket_object.archive.name
+  trigger_http          = true
+  entry_point           = "helloGET"
+}
+
