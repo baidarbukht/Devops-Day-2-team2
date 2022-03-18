@@ -26,7 +26,7 @@ terraform {
 }
 
   resource "google_cloudfunctions_function" "function" {
-  name        = "calculate_http"
+  name        = "calculator"
   description = "calculator function"
   runtime     = "python39"
   
@@ -34,7 +34,7 @@ terraform {
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
   trigger_http          = true
-  entry_point           = "helloGET"
+  entry_point           = "calculate_http"
 }
 
 }
