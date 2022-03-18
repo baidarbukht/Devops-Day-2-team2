@@ -14,9 +14,14 @@
 
 
 terraform {
+  backend "gcs" {
+    bucket = "nc-lp-devops-01-team-b-tfstate"
+    prefix = "env/dev"
+  }
+}
 
   resource "google_storage_bucket" "bucket" {
-  name     = "nc-lp-devops-01-team-b-tfstate"
+  name     = "nc-lp-devops-01-team-b-artifact"
   location = "EU"
 }
   resource "google_storage_bucket_object" "archive" {
@@ -37,5 +42,4 @@ terraform {
   entry_point           = "calculate_http"
 }
 
-}
 
